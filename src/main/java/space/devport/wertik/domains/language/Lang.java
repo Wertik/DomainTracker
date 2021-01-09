@@ -17,7 +17,13 @@ public enum Lang {
     HELP_BLANK("Commands.Help.Blank", "&6/dt &8- &7Displays this."),
     HELP_RELOAD("Commands.Reload.Help", "&6/dt reload &8- &7Reload the plugin."),
     HELP_SHOW("Commands.Show.Help", "&6/dt show &8- &7Show domain counts."),
-    HELP_FOOTER("Commands.Help.Footer", "&8|&8&m        ");
+    HELP_FOOTER("Commands.Help.Footer", "&8|&8&m        "),
+
+    NO_PERMISSIONS("Commands.No-Permissions", "&cYou're not allowed to do this."),
+    TOO_MANY_ARGS("Commands.Too-Many-Args", "&cToo many arguments."),
+    NOT_ENOUGH_ARGS("Commands.Not-Enough-Args", "&cNot enough arguments."),
+    NO_CONSOLE("Commands.No-Console", "&cThis command has to be done in game."),
+    NO_PLAYER("Commands.No-Player", "&cThis command has to be done from the console.");
 
     @Getter
     private final String path;

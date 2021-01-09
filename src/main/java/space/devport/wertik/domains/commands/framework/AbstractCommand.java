@@ -7,7 +7,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import org.jetbrains.annotations.Nullable;
 import space.devport.wertik.domains.DomainTrackerPlugin;
-import space.devport.wertik.domains.TextUtil;
+import space.devport.wertik.domains.language.Lang;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -50,7 +50,7 @@ public abstract class AbstractCommand extends Command {
     protected boolean checkPreconditions(CommandSender sender, String[] args) {
 
         if (!sender.hasPermission(permission)) {
-            TextUtil.sendMessage(sender, "&cYou don't have permissions to do this.");
+            Lang.NO_PERMISSIONS.get().send(sender);
             return false;
         }
 
@@ -70,12 +70,12 @@ public abstract class AbstractCommand extends Command {
             return false;
 
         if (isPlayerOnly() && !(sender instanceof ProxiedPlayer)) {
-            TextUtil.sendMessage(sender, "&cThis command can be only done in game.");
+            Lang.NO_CONSOLE.get().send(sender);
             return false;
         }
 
         if (isConsoleOnly() && sender instanceof ProxiedPlayer) {
-            TextUtil.sendMessage(sender, "&cThis command can only be done from the console.");
+            Lang.NO_PLAYER.get().send(sender);
             return false;
         }
 
@@ -87,10 +87,10 @@ public abstract class AbstractCommand extends Command {
             int res = range.check(length);
 
             if (res == -1) {
-                TextUtil.sendMessage(sender, "&cNot enough arguments.");
+                Lang.NOT_ENOUGH_ARGS.get().send(sender);
                 return false;
             } else if (res == 1) {
-                TextUtil.sendMessage(sender, "&cToo many arguments.");
+                Lang.TOO_MANY_ARGS.get().send(sender);
                 return false;
             }
         }
