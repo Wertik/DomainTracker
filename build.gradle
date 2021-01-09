@@ -1,0 +1,61 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+archivesBaseName = 'DomainTracker'
+group 'space.devport.wertik.domains'
+sourceCompatibility = '8'
+version = '1.0.0'
+
+def pluginName = 'DomainTracker'
+def mainClass = project.property("group") + "." + pluginName + "Plugin"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url = 'https://nexus.pvpcraft.cz/repository/devport/'
+        credentials {
+            username = 'devport-user'
+            password = "SagiJePan134"
+        }
+    }
+
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
+    }
+
+    maven {
+        url = 'https://repo.maven.apache.org/maven2'
+    }
+}
+
+processResources {
+    filter ReplaceTokens, tokens: ["version": version, "name": pluginName, "main_class": mainClass]
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    compile 'net.md-5:bungeecord-api:1.16-R0.3'
+
+    compile 'org.jetbrains:annotations:20.1.0'
+
+    compileOnly 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+
+    testCompile 'junit:junit:4.4'
+}
