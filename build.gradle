@@ -8,7 +8,8 @@ plugins {
 archivesBaseName = 'DomainTracker'
 group 'space.devport.wertik.domains'
 sourceCompatibility = '8'
-version = '1.0.0'
+def pluginVersion = '1.0.1'
+version = pluginVersion
 
 def pluginName = 'DomainTracker'
 def mainClass = project.property("group") + "." + pluginName + "Plugin"
@@ -34,7 +35,9 @@ repositories {
 }
 
 processResources {
-    filter ReplaceTokens, tokens: ["version": version, "name": pluginName, "main_class": mainClass]
+    filter ReplaceTokens, tokens: ["version"   : pluginVersion,
+                                   "name"      : pluginName,
+                                   "main_class": mainClass]
 }
 
 publishing {
