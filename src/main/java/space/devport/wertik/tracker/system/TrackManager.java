@@ -106,6 +106,8 @@ public class TrackManager {
         if (uniquePlayers.contains(uniqueId))
             return;
 
+        uniquePlayers.add(uniqueId);
+
         versionEntry.incrementUnique();
         domainEntry.incrementUnique();
     }
