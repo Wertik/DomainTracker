@@ -1,9 +1,9 @@
-package space.devport.wertik.domains.commands.framework;
+package space.devport.wertik.tracker.commands.framework;
 
 import lombok.Getter;
 import lombok.Setter;
 import net.md_5.bungee.api.CommandSender;
-import space.devport.wertik.domains.DomainTrackerPlugin;
+import space.devport.wertik.tracker.TrackerPlugin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +19,7 @@ public class SubCommand extends AbstractCommand {
 
     private final List<String> aliases = new ArrayList<>();
 
-    public SubCommand(DomainTrackerPlugin plugin, String name) {
+    public SubCommand(TrackerPlugin plugin, String name) {
         super(plugin, name);
         this.executor = (sender, args) -> {
         };

@@ -5,14 +5,14 @@ plugins {
     id 'maven-publish'
 }
 
-archivesBaseName = 'DomainTracker'
-group 'space.devport.wertik.domains'
+archivesBaseName = 'PlayerTracker'
+group 'space.devport.wertik.tracker'
 sourceCompatibility = '8'
-def pluginVersion = '1.0.1'
+def pluginVersion = '2.0.0'
 version = pluginVersion
 
-def pluginName = 'DomainTracker'
-def mainClass = project.property("group") + "." + pluginName + "Plugin"
+def pluginName = 'PlayerTracker'
+def mainClass = project.property("group") + ".TrackerPlugin"
 
 repositories {
     mavenLocal()

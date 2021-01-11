@@ -1,4 +1,4 @@
-package space.devport.wertik.domains;
+package space.devport.wertik.tracker;
 
 import com.google.common.base.Strings;
 import lombok.experimental.UtilityClass;

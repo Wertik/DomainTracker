@@ -1,10 +1,10 @@
-package space.devport.wertik.domains.language;
+package space.devport.wertik.tracker.language;
 
 import com.google.common.base.Strings;
 import lombok.Getter;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import space.devport.wertik.domains.TextUtil;
+import space.devport.wertik.tracker.TextUtil;
 
 import java.util.Arrays;
 import java.util.LinkedList;

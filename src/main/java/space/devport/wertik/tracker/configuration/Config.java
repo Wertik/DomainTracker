@@ -1,11 +1,11 @@
-package space.devport.wertik.domains.configuration;
+package space.devport.wertik.tracker.configuration;
 
 import lombok.Getter;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
-import space.devport.wertik.domains.TextUtil;
+import space.devport.wertik.tracker.TextUtil;
 
 import java.io.File;
 import java.io.IOException;

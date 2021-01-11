@@ -1,15 +1,15 @@
-package space.devport.wertik.domains.commands.framework;
+package space.devport.wertik.tracker.commands.framework;
 
 import net.md_5.bungee.api.CommandSender;
-import space.devport.wertik.domains.DomainTrackerPlugin;
+import space.devport.wertik.tracker.TrackerPlugin;
 
 public abstract class CommandBase extends AbstractCommand {
 
-    public CommandBase(DomainTrackerPlugin plugin, String name) {
+    public CommandBase(TrackerPlugin plugin, String name) {
         super(plugin, name);
     }
 
-    public CommandBase(DomainTrackerPlugin plugin, String name, String permissionKey, String... aliases) {
+    public CommandBase(TrackerPlugin plugin, String name, String permissionKey, String... aliases) {
         super(plugin, name, "", aliases);
         setPermission(permissionKey);
     }

@@ -1,4 +1,4 @@
-package space.devport.wertik.domains.commands.framework;
+package space.devport.wertik.tracker.commands.framework;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,8 +6,8 @@ import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import org.jetbrains.annotations.Nullable;
-import space.devport.wertik.domains.DomainTrackerPlugin;
-import space.devport.wertik.domains.language.Lang;
+import space.devport.wertik.tracker.TrackerPlugin;
+import space.devport.wertik.tracker.language.Lang;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 public abstract class AbstractCommand extends Command {
 
-    protected final DomainTrackerPlugin plugin;
+    protected final TrackerPlugin plugin;
 
     @Getter
     @Setter
@@ -35,12 +35,12 @@ public abstract class AbstractCommand extends Command {
     @Getter
     private final Map<String, SubCommand> subCommands = new HashMap<>();
 
-    public AbstractCommand(DomainTrackerPlugin plugin, String name) {
+    public AbstractCommand(TrackerPlugin plugin, String name) {
         super(name.toLowerCase());
         this.plugin = plugin;
     }
 
-    public AbstractCommand(DomainTrackerPlugin plugin, String name, String permission, String... aliases) {
+    public AbstractCommand(TrackerPlugin plugin, String name, String permission, String... aliases) {
         super(name.toLowerCase(), permission, aliases);
         this.plugin = plugin;
     }

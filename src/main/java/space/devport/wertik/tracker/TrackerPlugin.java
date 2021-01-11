@@ -1,19 +1,23 @@
-package space.devport.wertik.domains;
+package space.devport.wertik.tracker;
 
 import lombok.Getter;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
-import space.devport.wertik.domains.commands.DomainTrackerCommand;
-import space.devport.wertik.domains.configuration.Config;
-import space.devport.wertik.domains.language.Lang;
-import space.devport.wertik.domains.listeners.PlayerListener;
-import space.devport.wertik.domains.system.DomainManager;
+import space.devport.wertik.tracker.commands.TrackerCommand;
+import space.devport.wertik.tracker.configuration.Config;
+import space.devport.wertik.tracker.language.Lang;
+import space.devport.wertik.tracker.listeners.PlayerListener;
+import space.devport.wertik.tracker.system.TrackManager;
 
-public class DomainTrackerPlugin extends Plugin {
+public class TrackerPlugin extends Plugin {
+
+    //TODO: Save Users instead of domains and versions separately.
+    //TODO: Add user info.
+    //TODO: Add messages when a player joins to players with certain permissions.
 
     @Getter
-    private static DomainTrackerPlugin plugin;
+    private static TrackerPlugin plugin;
 
     public static boolean debug = false;
 
@@ -24,7 +28,7 @@ public class DomainTrackerPlugin extends Plugin {
     private final Config language = new Config(this, "language");
 
     @Getter
-    private final DomainManager domainManager = new DomainManager(this);
+    private final TrackManager trackManager = new TrackManager(this);
 
     @Override
     public void onEnable() {
@@ -33,19 +37,19 @@ public class DomainTrackerPlugin extends Plugin {
         config.load();
         debug = config.getConfiguration().getBoolean("debug-enabled", false);
 
-        domainManager.load();
+        trackManager.load();
 
         Lang.load(language);
 
         getProxy().getPluginManager().registerListener(this, new PlayerListener(this));
-        getProxy().getPluginManager().registerCommand(this, new DomainTrackerCommand(this));
+        getProxy().getPluginManager().registerCommand(this, new TrackerCommand(this));
 
-        getLogger().info("DomainTracker loaded successfully.");
+        getLogger().info("PlayerTracker loaded successfully.");
     }
 
     @Override
     public void onDisable() {
-        domainManager.save();
+        trackManager.save();
     }
 
     public void reload(CommandSender sender) {
