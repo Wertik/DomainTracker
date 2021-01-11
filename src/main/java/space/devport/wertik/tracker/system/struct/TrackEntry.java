@@ -5,9 +5,9 @@ import lombok.Getter;
 abstract class TrackEntry {
 
     @Getter
-    private int online;
-    @Getter
     private int unique;
+    @Getter
+    private transient int online;
 
     public void incrementOnline() {
         this.online += 1;
