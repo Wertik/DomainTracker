@@ -67,6 +67,6 @@ public class TrackerPlugin extends Plugin {
 
     public static void debug(String str) {
         if (debug)
-            ProxyServer.getInstance().getLogger().info(str);
+            ProxyServer.getInstance().getLogger().info(String.format("DEBUG: %s", str));
     }
 }

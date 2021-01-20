@@ -103,6 +103,8 @@ public class TrackManager {
         versionEntry.incrementOnline();
         domainEntry.incrementOnline();
 
+        TrackerPlugin.debug("Incremented online for " + hostname + ":" + version + ", triggered by " + uniqueId);
+
         if (uniquePlayers.contains(uniqueId))
             return;
 
@@ -110,11 +112,20 @@ public class TrackManager {
 
         versionEntry.incrementUnique();
         domainEntry.incrementUnique();
+
+        TrackerPlugin.debug("Incremented unique for " + hostname + ":" + version + ", triggered by " + uniqueId);
     }
 
     public void handleQuit(ClientVersion version, String hostname) {
-        getOrCreateVersion(version).decrementOnline();
-        getOrCreateDomain(hostname).decrementOnline();
+        if (versions.containsKey(version)) {
+            versions.get(version).decrementOnline();
+            TrackerPlugin.debug("Decremented online for " + version.toString());
+        }
+
+        if (domains.containsKey(hostname)) {
+            domains.get(hostname).decrementOnline();
+            TrackerPlugin.debug("Decremented online for " + hostname);
+        }
     }
 
     public int getUniqueJoins() {

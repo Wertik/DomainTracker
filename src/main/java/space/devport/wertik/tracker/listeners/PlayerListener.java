@@ -1,7 +1,7 @@
 package space.devport.wertik.tracker.listeners;
 
-import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
+import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
@@ -20,11 +20,11 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void onJoin(LoginEvent event) {
-        UUID uniqueId = event.getConnection().getUniqueId();
+    public void onJoin(PostLoginEvent event) {
+        UUID uniqueId = event.getPlayer().getUniqueId();
 
-        String hostname = event.getConnection().getVirtualHost().getHostName();
-        ClientVersion version = ClientVersion.fromProtocol(event.getConnection().getVersion());
+        String hostname = event.getPlayer().getPendingConnection().getVirtualHost().getHostName();
+        ClientVersion version = ClientVersion.fromProtocol(event.getPlayer().getPendingConnection().getVersion());
 
         trackManager.handleJoin(uniqueId, version, hostname);
     }

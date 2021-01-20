@@ -1,0 +1,5 @@
+# Configuration for @name@
+#
+# Version: @version@
+
+debug-enabled: true
