@@ -14,9 +14,7 @@ public class TrackManager {
 
     private final TrackerPlugin plugin;
 
-    @Getter
     private final Map<String, DomainEntry> domains = new HashMap<>();
-    @Getter
     private final Map<ClientVersion, VersionEntry> versions = new HashMap<>();
 
     private final Set<UUID> uniquePlayers = new HashSet<>();
@@ -117,18 +115,30 @@ public class TrackManager {
     }
 
     public void handleQuit(ClientVersion version, String hostname) {
-        if (versions.containsKey(version)) {
-            versions.get(version).decrementOnline();
+        VersionEntry versionEntry = getVersions().get(version);
+
+        if (versionEntry != null) {
+            versionEntry.decrementOnline();
             TrackerPlugin.debug("Decremented online for " + version.toString());
         }
 
-        if (domains.containsKey(hostname)) {
-            domains.get(hostname).decrementOnline();
+        DomainEntry domainEntry = getDomains().get(hostname);
+
+        if (domainEntry != null) {
+            domainEntry.decrementOnline();
             TrackerPlugin.debug("Decremented online for " + hostname);
         }
     }
 
     public int getUniqueJoins() {
         return uniquePlayers.size();
+    }
+
+    public Map<String, DomainEntry> getDomains() {
+        return Collections.unmodifiableMap(domains);
+    }
+
+    public Map<ClientVersion, VersionEntry> getVersions() {
+        return Collections.unmodifiableMap(versions);
     }
 }

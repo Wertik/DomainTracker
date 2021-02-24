@@ -37,7 +37,6 @@ public enum Lang {
     private final String defaultValue;
 
     @Getter
-    @Setter
     private String value;
 
     Lang(String path, String defaultValue) {
@@ -59,8 +58,7 @@ public enum Lang {
             String path = entry.getPath();
 
             if (configuration.contains(path)) {
-                String value = configuration.getString(path);
-                entry.setValue(value);
+                entry.value = configuration.getString(path);
             } else {
                 configuration.set(path, entry.getDefaultValue());
                 save = true;
